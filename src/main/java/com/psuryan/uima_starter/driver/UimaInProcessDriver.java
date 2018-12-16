@@ -26,7 +26,7 @@ public class UimaInProcessDriver {
   }
 
   public void go() throws Exception {
-    String docText = "Conference Rooms at Watson:" + "\nLocation	Capacity 	Wall Phone Ext."
+    String docText = "Location	Capacity 	Wall Phone Ext."
             + "\nClassroom Style" + "\n  HAW J2-B34 	Seats 12 	tieline 863-3130"
             + "\n  HAW J2-N07 	Seats 24 	tieline 863-3210"
             + "\n  YKT 20-001 	Seats 36 	tieline 862-4304"
