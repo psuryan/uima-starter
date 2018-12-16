@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+	<frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+	<primitive>true</primitive>
+	<annotatorImplementationName>com.psuryan.uima_starter.ae.RoomNumberAnnotator</annotatorImplementationName>
+	<analysisEngineMetaData>
+		<name>Room Number Annotator</name>
+		<description>An example annotator that searches for room numbers in the 
+			research buildings.</description>
+		<version>1.0</version>
+		<vendor>com.psuryan</vendor>
+		<!-- TypeSystem Definition -->
+		<typeSystemDescription>
+			<imports>
+				<import name="type_system.RoomNumber_BuildingTypeSystem"/>
+			</imports>
+		</typeSystemDescription>
+		<!-- Capabilities: Inputs, Outputs, and Preconditions -->
+		<capabilities>
+			<capability>
+				<inputs/>
+				<outputs>
+					<type>com.psuryan.uima_starter.model.RoomNumber</type>
+					<feature>com.psuryan.uima_starter.model.RoomNumber:building</feature>
+				</outputs>
+			</capability>
+		</capabilities>
+		<operationalProperties>
+			<modifiesCas>true</modifiesCas>
+			<multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+			<outputsNewCASes>false</outputsNewCASes>
+		</operationalProperties>
+	</analysisEngineMetaData>
+</analysisEngineDescription>

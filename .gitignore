@@ -1,0 +1,8 @@
+/.metadata/
+build/
+bin/
+
+# Compiled class file
+*.class
+.gradle
+

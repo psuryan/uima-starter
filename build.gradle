@@ -1,0 +1,61 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+version = '1.0'
+
+project.ext {
+    version_uima = "2.10.0"
+}
+
+
+sourceSets{
+    main {
+        java {
+            java.srcDirs = ['src/main/java']
+        }
+        resources {
+            resources.srcDirs = ['src/main/java', 'src/main/descriptors', 'src/main/resources']
+        }
+    }
+    test {
+        java {
+            test.java.srcDirs = ['src/test/java']
+        }
+        resources {
+            test.resources.srcDirs = ['src/test/java', 'src/test/resources', 'src/test/descriptors']
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.apache.uima:uimaj-core:$version_uima"
+    compile "org.apache.uima:uimaj-tools:$version_uima" // for running jCasGen
+}
+
+task jCasGen(type: JavaExec) {
+	description = 'Generate UIMA JCas cover classes.'
+    if ( project.hasProperty('jCasGenArgs')) {
+        def values = project.property('jCasGenArgs').split(',')
+        def projectName = values[0]
+        def srcFilePath = values[1]
+        ext.srcFile = file("../" + projectName + "/src/main/descriptors/" + srcFilePath)
+        ext.outputDir = file("../" + projectName + "/src/main/java")
+        inputs.file srcFile
+        outputs.dir outputDir
+        classpath = sourceSets.main.runtimeClasspath + sourceSets.test.runtimeClasspath
+        main = 'org.apache.uima.tools.jcasgen.Jg'
+        args = ['-jcasgeninput', srcFile, '-jcasgenoutput', outputDir]
+    } else {
+        println "projectName or srcFilePath has not been unspecified."
+    }
+}
+
+task runApp(type:JavaExec) {
+    main = 'com.psuryan.uima_starter.driver.UimaInProcessDriver'
+    classpath = sourceSets.main.runtimeClasspath
+}
