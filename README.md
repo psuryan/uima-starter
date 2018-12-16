@@ -1,6 +1,7 @@
 # uima-starter
 Sample UIMA based application with Gradle build. The famous "RoomNumberAnnotator" example from UIMA is used. The project has the following structure 
 
+```
 src
 ├── main
 │   ├── descriptors
@@ -26,3 +27,4 @@ src
 build.gradle
 gradle.properties
 README.md
+```
